@@ -23,8 +23,9 @@ For at least 4 of my 5 test questions, the retrieved chunks include one that
 contains the answer.
 
 **Why this target:**
-<!-- e.g. "One of my questions is about a topic only two documents mention, so
-     I expect that one to be hard." -->
+ost of the chunks retrieved should have relevant information that contributes to the answer. So it is to be 
+expected that for a response to be valid, there needs to be at least 1 relevant chunk that contains the answerfor
+a given question.   
 
 ---
 
@@ -33,8 +34,8 @@ contains the answer.
 Every answer the system produces names at least one source document.
 
 **Why this target:**
-<!-- Why all five and not four? What about your setup makes that achievable —
-     or what would have to go wrong for it not to be? -->
+fI it doesn't aname a source document, the answer that was produced have a chance of being the result of a hallucination, which is something that we are trying to actively prevent.
+
 
 ---
 
@@ -50,47 +51,26 @@ in at least 4 of 5 tries.
      just keep five of them, or the "4 of 5" above has nothing to be 4 of. -->
 
 **Why this target:**
-<!-- What did your distances look like when you set the cutoff in Milestone 4?
-     Was there a clean gap, or did the two groups overlap? -->
+<If an answer retrieved by the system deviates too much from the question, as in the distance is too big, it needs to reject that answer so that doesn't pollute the quality of the response.
 
 ---
 
 ## 4. Something about your chunks
 
-<!-- YOU WRITE THIS ONE.
-
-     How would you know if your chunks were the right size? Name something
-     countable or observable.
-
-     Examples of the right shape — don't copy these, they should come from
-     what you actually saw in Milestone 3:
-       - "At least 4 of 5 sampled chunks read as a complete thought, with no
-          sentence cut in half at either end."
-       - "No chunk is shorter than 200 characters, since anything below that
-          in my corpus turned out to be a heading with no content under it." -->
-
-
+There should be at least 2 sampled chunks with a word count of at least 10 words.
 
 **Why this target:**
-
-
+ sampled chunks means there are informations that can be used to compared against each other. And by setting a word count limit to at least 10 words, that removes data from chunks that are provides too short of information.
 
 ---
 
 ## 5. Your choice
 
-<!-- YOU WRITE THIS ONE TOO.
-
-     Pick something you actually care about getting right. It could be about
-     speed, about refusals, about a particular kind of question your corpus
-     handles badly, about source attribution being correct rather than merely
-     present — anything, as long as it names a number or an observable
-     outcome. -->
-
+The reponse should not take more than 5 minutes.
 
 
 **Why this target:**
-
+f it takes more than 5 minutes, then it is possible that the question is too complex or the AI is stuck inside of a loop. 
 
 
 ---

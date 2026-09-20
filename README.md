@@ -1,5 +1,7 @@
 # The Unofficial Guide
 
+Mingfeng Zhong
+Corpus: campus_life
 <!-- Replace this line with your name and which corpus you picked. -->
 
 > **This file is your submission.** Fill it in as you go — most sections get

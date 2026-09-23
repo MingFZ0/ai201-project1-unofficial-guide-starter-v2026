@@ -23,11 +23,10 @@ Corpus: campus_life
 
 ## What This Does
 
-<!-- Three or four sentences. Which corpus you picked, and the kinds of
-     questions your system answers. Write it for someone who has never seen
-     this repo.
-
-     Milestone 5. -->
+I picked the campus_life as the corpus. My system answer questions that are commonly
+asked by incoming students who are trying to learn the campus better. Specifically, 
+it answers about finanical aid, class difficulties, campus distance, opening times, and 
+food on campus. 
 
 ## Chunking Strategy
 
@@ -40,15 +39,6 @@ For the corpus that I picked, which is campus_life, I looked at the average size
 I think the current overlap worked fine, and I did not see any issues. So therefore, I want to test how it will come out and I did not change the overlap and kept it at 120 characters.
 
 ## Sample Chunks
-
-<!-- Five chunks, pasted as text. Label each one and name the file it came from
-     AND the function that produced it — the grader checks your code against
-     what you claim here.
-
-     `python app.py chunks -n 5` prints all three for you. Copy them straight
-     across.
-
-     Milestone 3. -->
 
 **Chunk 1** — source: `admin_add_drop_deadline.txt#0` — produced by: `chunker.py::split_documents`
 
@@ -157,18 +147,20 @@ in-scope distance (0.587).
 
 ## How I Used AI
 
-<!-- Two specific moments. For each: what you asked for, what came back, and
-     what you changed about it.
-
-     "I asked Claude to write the chunking function from my notes. It ignored
-     the overlap, so I added that myself" is the level of detail we're after.
-     "I used AI to help me code" is not.
-
-     Milestone 5. -->
-
 **1.**
 
+For me, I asked Claude to write the split document chunking function. At first, it came
+back with a function that cutted too much of the document. When I tried
+running the system, the chunking returned were empty. So after looking through the code,
+I realized that it split the document on a new line. So I added the new specification that
+prevents it from returning empty arrays. 
+
 **2.**
+
+I also utilized Claude to explain some of the words described in the document. For example,
+I had it explain what overlap is and how it was used, and Claude described it as a numerical 
+number that represent the range of context that each segement of information have. This was
+really helpful in understanding how the system worked.
 
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never

@@ -102,30 +102,58 @@ Laundry costs $1.50 wash, $1.25 dry, coin or card. On noise: loud until about 1a
 
 ## Sample Answer
 
-<!-- One complete question and answer, pasted as text, with the source line
-     visible. Milestone 4. -->
-
 **Question:**
+
+How long does it take to walk across campus?
 
 **Answer:**
 
 ```
+(best distance 0.346, cutoff 0.7, top-k 3)
+
+Based on the provided documents, walking times vary by location: Aldridge
+Hall to the science quad takes 4 minutes, Fenwick Court to central campus
+takes 18 minutes, Morrow House to Kestrel Commons takes 7 minutes, and the
+Library to Ridgeway Café takes 3 minutes. Additionally, you should add four
+minutes to these times in the winter because the path past the pond ices
+over (transit_walking.txt).
+
+Sources retrieved: health_center.txt, transit_shuttle.txt, transit_walking.txt
 ```
 
-**My relevance cutoff:**
+I lowered top-k from the default 5 to 3 after noticing that k=5 pulled in two
+clearly irrelevant chunks (a dining follow-up post and an on-campus-jobs post)
+alongside the three genuinely related ones. At k=3, the answer stayed
+identical and used fewer tokens (500 vs. 711), though one loosely related
+chunk (health_center.txt — matched on the word "walk," not the topic) still
+made the cut.
 
-<!-- The number you set in config.py, and how you got there.
+**My relevance cutoff:** 0.7
 
-     You ran five questions your corpus covers and the five in OUT_OF_SCOPE
-     that it clearly doesn't, and wrote down the best distance for each. What
-     did those two groups look like? Where was the gap? Put the actual numbers
-     here — the table below wants all ten rows.
+**Relevance cutoff:** 0.7
 
-     Milestone 4. -->
+**In-scope questions (best distance for each):**
+| Question | Best distance |
+|---|---|
+| How long does it take to walk across campus? | 0.346 |
+| What time does the campus open for students? | 0.481 |
+| What kind of food is offered on campus? | 0.496 |
+| How much financial aid should a student expect to get? | 0.577 |
+| What do students say about the difficulties of the classes? | 0.587 |
 
-| Question | In corpus? | Best distance |
-|---|---|---|
-|  |  |  |
+**Out-of-scope questions (best distance for each):**
+| Question | Best distance |
+|---|---|
+| What is the capital of Mongolia? | 0.825 |
+| What is the recommended dosage of ibuprofen for a headache? | 0.844 |
+| Who won the 1994 World Cup? | 0.886 |
+| How do I write a for loop in Rust? | 0.896 |
+| How do I change the oil in a diesel engine? | 0.934 |
+
+The two groups separate cleanly, with a gap between 0.587 and 0.825. I set the
+cutoff at 0.7 — roughly the midpoint of that gap — rather than at the
+starter's default of 0.6, since 0.6 left almost no margin above my highest
+in-scope distance (0.587).
 
 ## How I Used AI
 
